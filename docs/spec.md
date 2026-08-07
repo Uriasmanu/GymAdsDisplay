@@ -16,15 +16,13 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 **Escopo:** onde no código isso precisa ser resolvido (geração, exibição, ambos...).
 -->
 
-### [aberto] Imagens na pasta parceiros é onde vai estar as propagandas e images é informaçoes do CT (academia que anuncia) sempre tem que mostrar de forma aleatoria alternando entre uma pasta e outra
-
-### [aberto] Quando iniciar o html o f11 tem que ser "clicado" por padrão, o objetivo é o html abrir comoo tela cheia
-
 ## Histórico de Correções
 
 | Data | Descrição | RF/CA Afetados |
 |------|-----------|----------------|
 | 07/08/2026 | Implementada auto-detecção de imagens na pasta images/ | RF-01 a RF-06, CA-01 a CA-04 |
+| 07/08/2026 | Implementada alternância entre parceiros/ e images/ com aleatoriedade | RF-01 a RF-06, CA-01 a CA-04 |
+| 07/08/2026 | Implementada tela cheia automática | RF-04, CA-03, CA-04 |
 
 
 

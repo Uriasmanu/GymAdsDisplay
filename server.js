@@ -4,6 +4,7 @@ const path = require('path');
 
 const PORT = 3000;
 const IMAGES_DIR = path.join(__dirname, 'images');
+const PARCEIROS_DIR = path.join(__dirname, 'parceiros');
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -30,23 +31,43 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // API endpoint to list images
-  if (req.url === '/api/images') {
+  // API endpoint to list images from a directory
+  if (req.url === '/api/images' || req.url === '/api/parceiros' || req.url === '/api/all') {
     try {
-      const files = fs.readdirSync(IMAGES_DIR);
       const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.svg'];
       
-      const images = files
-        .filter(file => {
-          const ext = path.extname(file).toLowerCase();
-          return imageExtensions.includes(ext);
-        })
-        .map(file => ({
-          filename: file,
-          name: path.basename(file, path.extname(file)).replace(/[-_]/g, ' '),
-          path: `images/${file}`
-        }))
-        .sort((a, b) => a.name.localeCompare(b.name));
+      const getImagesFromDir = (dir, prefix) => {
+        if (!fs.existsSync(dir)) return [];
+        const files = fs.readdirSync(dir);
+        return files
+          .filter(file => {
+            const ext = path.extname(file).toLowerCase();
+            return imageExtensions.includes(ext);
+          })
+          .map(file => ({
+            filename: file,
+            name: path.basename(file, path.extname(file)).replace(/[-_]/g, ' '),
+            path: `${prefix}/${file}`,
+            source: prefix
+          }));
+      };
+
+      let images = [];
+      
+      if (req.url === '/api/images') {
+        images = getImagesFromDir(IMAGES_DIR, 'images');
+      } else if (req.url === '/api/parceiros') {
+        images = getImagesFromDir(PARCEIROS_DIR, 'parceiros');
+      } else if (req.url === '/api/all') {
+        const imagesFromDir = getImagesFromDir(IMAGES_DIR, 'images');
+        const parceirosFromDir = getImagesFromDir(PARCEIROS_DIR, 'parceiros');
+        images = [...imagesFromDir, ...parceirosFromDir];
+        // Shuffle array for random order
+        for (let i = images.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [images[i], images[j]] = [images[j], images[i]];
+        }
+      }
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ images }));
@@ -83,4 +104,6 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
   console.log(`Images API: http://localhost:${PORT}/api/images`);
+  console.log(`Parceiros API: http://localhost:${PORT}/api/parceiros`);
+  console.log(`All (shuffled): http://localhost:${PORT}/api/all`);
 });
