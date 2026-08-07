@@ -118,15 +118,19 @@ export default function Carousel() {
     return () => document.removeEventListener('visibilitychange', onVisibilityChange)
   }, [])
 
-  // Fullscreen na primeira interação
+  // Fullscreen: tenta automaticamente + fallback no primeiro clique/tecla
   useEffect(() => {
+    const el = document.documentElement
     const requestFS = () => {
-      const el = document.documentElement
-      if (el.requestFullscreen) {
+      if (!document.fullscreenElement && el.requestFullscreen) {
         el.requestFullscreen().catch(() => {})
       }
     }
-    if (document.fullscreenElement) return
+
+    // Tentativa imediata (funciona em kiosk/TV, bloqueado em browsers comuns)
+    requestFS()
+
+    // Fallback: primeiro clique ou tecla
     document.addEventListener('click', requestFS, { once: true })
     document.addEventListener('keydown', requestFS, { once: true })
     return () => {
@@ -152,8 +156,7 @@ export default function Carousel() {
       <div className="carousel__slide-container">
         {slide.tipo === 'intro' && (
           <div className="slide-intro">
-            <img src="/images/android-icon-foreground.png" alt="" className="slide-intro__logo" />
-            <img src="/images/notification-icon.png" alt="" className="slide-intro__notif" />
+            <img src="/images/notification-icon.png" alt="" className="slide-intro__logo" />
           </div>
         )}
 
