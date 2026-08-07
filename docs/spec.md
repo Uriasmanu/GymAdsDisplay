@@ -18,6 +18,8 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 
 ### [aberto] Imagens na pasta parceiros é onde vai estar as propagandas e images é informaçoes do CT (academia que anuncia) sempre tem que mostrar de forma aleatoria alternando entre uma pasta e outra
 
+### [aberto] Quando iniciar o html o f11 tem que ser "clicado" por padrão, o objetivo é o html abrir comoo tela cheia
+
 ## Histórico de Correções
 
 | Data | Descrição | RF/CA Afetados |
