@@ -1,15 +1,35 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const carrosselEl = document.getElementById('carrossel');
   const barrasEl = document.getElementById('barras');
   const relogioEl = document.getElementById('relogio');
 
-  const carrossel = new Carrossel(
-    carrosselEl,
-    barrasEl,
-    relogioEl,
-    PARCEIROS,
-    DURACAO_SLIDE_MS
-  );
+  try {
+    const response = await fetch('/api/images');
+    const data = await response.json();
+    
+    if (data.images && data.images.length > 0) {
+      const parceiros = data.images.map(img => ({
+        nome: img.name,
+        categoria: "Parceiro",
+        img: img.path
+      }));
 
-  carrossel.inicializar();
+      console.log(`${parceiros.length} imagens detectadas:`, parceiros.map(p => p.nome));
+
+      const carrossel = new Carrossel(
+        carrosselEl,
+        barrasEl,
+        relogioEl,
+        parceiros,
+        DURACAO_SLIDE_MS
+      );
+
+      carrossel.inicializar();
+    } else {
+      carrosselEl.innerHTML = '<div style="color: #c9a227; text-align: center; padding: 20px;">Nenhuma imagem encontrada na pasta images/</div>';
+    }
+  } catch (error) {
+    console.error('Erro ao carregar imagens:', error);
+    carrosselEl.innerHTML = '<div style="color: #c9a227; text-align: center; padding: 20px;">Erro ao carregar imagens</div>';
+  }
 });

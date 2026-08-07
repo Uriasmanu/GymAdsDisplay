@@ -16,9 +16,13 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 **Escopo:** onde no código isso precisa ser resolvido (geração, exibição, ambos...).
 -->
 
-### [aberto] O codigo sempre tem que usar as imagens que estão dentro da pasta, se eu adicionar, adiciona se eu remover remove
+### [aberto] Imagens na pasta parceiros é onde vai estar as propagandas e images é informaçoes do CT (academia que anuncia) sempre tem que mostrar de forma aleatoria alternando entre uma pasta e outra
 
 ## Histórico de Correções
+
+| Data | Descrição | RF/CA Afetados |
+|------|-----------|----------------|
+| 07/08/2026 | Implementada auto-detecção de imagens na pasta images/ | RF-01 a RF-06, CA-01 a CA-04 |
 
 
 
