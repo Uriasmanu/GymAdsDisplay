@@ -44,8 +44,16 @@ function interleaveArrays(a, b) {
   return result
 }
 
+const SLIDE_INTRO = { tipo: 'intro' }
+const SLIDE_CONVITE = { tipo: 'convite' }
+
+function buildSlides() {
+  const middle = interleaveArrays(IMAGENS_CT, IMAGENS_PARCEIROS)
+  return [SLIDE_INTRO, ...middle, SLIDE_CONVITE]
+}
+
 export default function Carousel() {
-  const slides = interleaveArrays(IMAGENS_CT, IMAGENS_PARCEIROS)
+  const slides = useRef(buildSlides()).current
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -99,16 +107,35 @@ export default function Carousel() {
   return (
     <div className="carousel">
       <div className="carousel__slide-container">
-        {slides.map((s, i) => (
+        {slide.tipo === 'intro' && (
+          <div className="slide-intro">
+            <img src="/images/android-icon-foreground.png" alt="" className="slide-intro__logo" />
+            <span className="slide-intro__nome">CT IMPÉRIO</span>
+          </div>
+        )}
+
+        {slide.tipo === 'convite' && (
+          <div className="slide-convite">
+            <div className="slide-convite__conteudo">
+              <span className="slide-convite__icone">&#9733;</span>
+              <h2 className="slide-convite__titulo">Anuncie sua marca</h2>
+              <p className="slide-convite__texto">
+                Divulgue sua empresa no display do CT Império
+              </p>
+              <p className="slide-convite__contato">Fale conosco na recepção</p>
+            </div>
+          </div>
+        )}
+
+        {slide.tipo !== 'intro' && slide.tipo !== 'convite' && (
           <img
-            key={s.src}
-            src={s.src}
+            src={slide.src}
             alt=""
             className={`carousel__image ${
-              i === currentIndex ? 'carousel__image--active' : ''
-            } ${isTransitioning && i === currentIndex ? 'carousel__image--fade-out' : ''}`}
+              'carousel__image--active'
+            } ${isTransitioning ? 'carousel__image--fade-out' : ''}`}
           />
-        ))}
+        )}
       </div>
 
       <div className="carousel__overlay">
@@ -128,7 +155,10 @@ export default function Carousel() {
               {currentIndex + 1} / {slides.length}
             </span>
             <span className={`carousel__badge carousel__badge--${slide.tipo}`}>
-              {slide.tipo === 'ct' ? 'CT Império' : 'Parceiro'}
+              {slide.tipo === 'ct' && 'CT Império'}
+              {slide.tipo === 'parceiro' && 'Parceiro'}
+              {slide.tipo === 'intro' && 'Bem-vindo'}
+              {slide.tipo === 'convite' && 'Anuncie'}
             </span>
           </div>
         </div>

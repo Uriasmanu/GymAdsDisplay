@@ -108,3 +108,79 @@
   color: var(--dourado);
   border: 1px solid var(--dourado);
 }
+
+.carousel__badge--intro,
+.carousel__badge--convite {
+  background: var(--dourado);
+  color: var(--preto);
+}
+
+.slide-intro {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--preto);
+  padding-bottom: 10vh;
+}
+
+.slide-intro__logo {
+  width: 28vmin;
+  height: 28vmin;
+  object-fit: contain;
+  margin-bottom: 2rem;
+}
+
+.slide-intro__nome {
+  font-size: 5vmin;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: var(--dourado);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.slide-convite {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--preto);
+}
+
+.slide-convite__conteudo {
+  text-align: center;
+  padding: 2rem;
+}
+
+.slide-convite__icone {
+  font-size: 8vmin;
+  color: var(--dourado);
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.slide-convite__titulo {
+  font-size: 5vmin;
+  font-weight: 700;
+  color: var(--dourado);
+  margin: 0 0 1rem;
+  letter-spacing: 2px;
+}
+
+.slide-convite__texto {
+  font-size: 2.5vmin;
+  color: var(--branco);
+  margin: 0 0 2rem;
+  opacity: 0.85;
+}
+
+.slide-convite__contato {
+  font-size: 2vmin;
+  color: var(--cinza);
+  margin: 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

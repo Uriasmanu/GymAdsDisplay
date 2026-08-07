@@ -64,6 +64,8 @@ para que visitantes vejam conteúdo institucional e publicidade de parceiros sem
 - [x] RF-08: Tela cheia automática ao carregar (com fallback se bloqueado)
 - [x] RF-09: Tema visual: preto, dourado royal e branco (CT Império)
 - [x] RF-10: Layout responsivo - funciona em qualquer resolução de monitor 19"
+- [x] RF-11: Primeiro slide é a tela de boas-vindas com logo android-icon-foreground centralizada + texto "CT IMPÉRIO"
+- [x] RF-12: Último slide é convite para anunciar marca/empresa no display
 
 ---
 
@@ -223,3 +225,4 @@ Mover as imagens para `public/images/` e `public/parceiros/` para que sejam serv
 | 07/08/2026 | Movidas imagens para public/ para compatibilidade com Vite | RF-01, CA-01 |
 | 07/08/2026 | Implementado tema CT Império (preto/dourado/branco) | RF-09, CA-05 |
 | 07/08/2026 | Implementado fullscreen automático com fallback | RF-08, CA-05, CA-06 |
+| 07/08/2026 | Adicionado slide de boas-vindas (logo + CT IMPÉRIO) e slide convite para anunciantes | RF-11, RF-12 |
