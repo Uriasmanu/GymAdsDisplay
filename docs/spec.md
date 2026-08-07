@@ -18,15 +18,6 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 
 ## Histórico de Correções
 
-| Data | Descrição | RF/CA Afetados |
-|------|-----------|----------------|
-| 07/08/2026 | Implementada auto-detecção de imagens na pasta images/ | RF-01 a RF-06, CA-01 a CA-04 |
-| 07/08/2026 | Implementada alternância entre parceiros/ e images/ | RF-01 a RF-06, CA-01 a CA-04 |
-| 07/08/2026 | Implementada tela cheia automática | RF-04, CA-03, CA-04 |
-| 07/08/2026 | Corrigido deploy Vercel | Todos |
-| 07/08/2026 | Corrigida lógica de alternância 1:1 | RF-01 a RF-06, CA-01 a CA-04 |
-| 07/08/2026 | Refatoração completa para React + Vite | Todos |
-
 
 
 # Guia de Spec para Implementação de Features
