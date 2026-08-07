@@ -16,17 +16,16 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 **Escopo:** onde no código isso precisa ser resolvido (geração, exibição, ambos...).
 -->
 
-### [aberto] refaça toda a aplicação. não precisa ser html e css, pode ser react, o importante é o carrossel funcionar e como é uma pagina só, o vercel não precisa ter muitas logicas de pagia
-
 ## Histórico de Correções
 
 | Data | Descrição | RF/CA Afetados |
 |------|-----------|----------------|
 | 07/08/2026 | Implementada auto-detecção de imagens na pasta images/ | RF-01 a RF-06, CA-01 a CA-04 |
-| 07/08/2026 | Implementada alternância entre parceiros/ e images/ com aleatoriedade | RF-01 a RF-06, CA-01 a CA-04 |
+| 07/08/2026 | Implementada alternância entre parceiros/ e images/ | RF-01 a RF-06, CA-01 a CA-04 |
 | 07/08/2026 | Implementada tela cheia automática | RF-04, CA-03, CA-04 |
-| 07/08/2026 | Corrigido deploy Vercel: migrado de serverless function para JSON estático | Todos |
-| 07/08/2026 | Corrigida lógica de alternância: 1 imagem de images/, 1 de parceiros/,alternadamente. Build automático no Vercel via buildCommand | RF-01 a RF-06, CA-01 a CA-04 |
+| 07/08/2026 | Corrigido deploy Vercel | Todos |
+| 07/08/2026 | Corrigida lógica de alternância 1:1 | RF-01 a RF-06, CA-01 a CA-04 |
+| 07/08/2026 | Refatoração completa para React + Vite | Todos |
 
 
 

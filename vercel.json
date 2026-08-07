@@ -1,4 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "node scripts/generate-manifest.js"
+  "buildCommand": "npm run generate && npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install"
 }

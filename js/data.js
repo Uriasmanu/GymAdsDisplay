@@ -1,1 +1,0 @@
-const DURACAO_SLIDE_MS = 12000;

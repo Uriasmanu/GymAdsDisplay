@@ -1,4 +1,14 @@
-@import url('./variables.css');
+:root {
+  --preto: #0a0a0a;
+  --preto-2: #141210;
+  --dourado: #c9a227;
+  --dourado-claro: #e8c96a;
+  --dourado-escuro: #7d6414;
+  --branco: #f5f2ea;
+  --branco-fosco: #cfcabf;
+  --duracao-slide: 12s;
+  --duracao-transicao: 900ms;
+}
 
 * {
   margin: 0;
@@ -6,17 +16,12 @@
   box-sizing: border-box;
 }
 
-html, body {
+html, body, #root {
   width: 100%;
   height: 100%;
   background: var(--preto);
   overflow: hidden;
   font-family: 'Bebas Neue', 'Oswald', Arial Narrow, sans-serif;
-}
-
-@font-face {
-  font-family: 'DisplayFallback';
-  src: local('Arial Narrow');
 }
 
 .palco {
@@ -95,6 +100,10 @@ header {
   box-shadow:
     0 0 0 1px rgba(201, 162, 39, 0.25),
     0 0 60px rgba(201, 162, 39, 0.06) inset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .slide {
@@ -123,20 +132,22 @@ header {
   filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.55));
 }
 
-.slide .nome-parceiro {
+.nome-parceiro {
   margin-top: 2.4vh;
   font-size: 1.7vw;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--branco);
+  z-index: 3;
 }
 
-.slide .categoria-parceiro {
+.categoria-parceiro {
   margin-top: 0.4vh;
   font-size: 1vw;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--dourado);
+  z-index: 3;
 }
 
 .flag-parceiro {
@@ -153,18 +164,14 @@ header {
   z-index: 3;
 }
 
-footer {
-  flex: 0 0 auto;
-  padding: 1.6vh 4vw 2.2vh;
-  display: flex;
-  align-items: center;
-  gap: 1.2vw;
-}
-
 .barras {
-  flex: 1;
+  position: absolute;
+  bottom: 2vh;
+  left: 4vw;
+  right: 4vw;
   display: flex;
-  gap: 0.6vw;
+  gap: 0.4vw;
+  z-index: 3;
 }
 
 .barra {
@@ -176,7 +183,7 @@ footer {
   position: relative;
 }
 
-.barra .preenchimento {
+.preenchimento {
   position: absolute;
   inset: 0;
   width: 0%;
@@ -197,11 +204,26 @@ footer {
   to { width: 100%; }
 }
 
+footer {
+  flex: 0 0 auto;
+  padding: 1.6vh 4vw 2.2vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .relogio {
   font-size: 0.9vw;
   color: var(--branco-fosco);
   letter-spacing: 0.1em;
   white-space: nowrap;
+}
+
+.loading, .error, .empty {
+  color: var(--dourado);
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2vw;
 }
 
 @media (max-width: 700px) {
@@ -210,11 +232,19 @@ footer {
     font-size: 5vw;
   }
 
-  .slide .nome-parceiro {
+  .nome-parceiro {
     font-size: 4vw;
   }
 
-  .slide .categoria-parceiro {
+  .categoria-parceiro {
     font-size: 2.6vw;
+  }
+
+  .flag-parceiro {
+    font-size: 2vw;
+  }
+
+  .relogio {
+    font-size: 2.5vw;
   }
 }

@@ -4,7 +4,7 @@ const path = require('path');
 const rootDir = path.join(__dirname, '..');
 const IMAGES_DIR = path.join(rootDir, 'images');
 const PARCEIROS_DIR = path.join(rootDir, 'parceiros');
-const OUTPUT = path.join(rootDir, 'images.json');
+const OUTPUT = path.join(rootDir, 'public', 'images.json');
 
 const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.svg'];
 
