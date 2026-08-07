@@ -15,9 +15,16 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 **Comportamento esperado:** o que deveria acontecer.
 **Escopo:** onde no código isso precisa ser resolvido (geração, exibição, ambos...).
 -->
-### [aberto] apresentação de slides conforme requisitos
+### [resolvido] apresentação de slides conforme requisitos
+**Comportamento atual:** O App.jsx continha apenas o template padrão do Vite React, sem funcionalidade de carrossel.
+**Comportamento esperado:** Carrossel de slides em tela cheia, alternando entre imagens de images/ e parceiros/, com duração de 12s por slide, barra de progresso e loop infinito.
+**Escopo:** Frontend - componente Carousel e App
+
 ## Histórico de Correções
 
+| Data | Descrição | RF/CA Afetados |
+|------|-----------|----------------|
+| 07/08/2026 | Implementado carrossel de slides conforme requisitos (spec: implementado/carrossel-slides.md) | RF-01 a RF-10, CA-01 a CA-06 |
 
 
 # Guia de Spec para Implementação de Features

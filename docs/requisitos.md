@@ -49,7 +49,7 @@ O arquivo entregue cobre **apenas o bloco de publicidade dos parceiros** (os 40%
 
 ## 4. Requisitos funcionais
 
-### 4.1 Bloco de publicidade de parceiros (implementado)
+### 4.1 Bloco de publicidade de parceiros (implementado ✓)
 - RF01 — O sistema deve exibir um parceiro por vez, em tela cheia, por um tempo configurável entre 10 e 15 segundos.
 - RF02 — Ao final do tempo de exibição, o sistema deve avançar automaticamente para o próximo parceiro, em loop infinito (ao chegar no último, volta para o primeiro).
 - RF03 — O sistema deve exibir, para cada parceiro: imagem/logo, nome e categoria (ex.: "Nutrição Esportiva").
@@ -105,9 +105,9 @@ O arquivo entregue cobre **apenas o bloco de publicidade dos parceiros** (os 40%
 
 ## 8. Critérios de aceite
 
-- [ ] Cada parceiro é exibido por um tempo dentro da faixa 10–15s.
-- [ ] O carrossel de parceiros roda em loop infinito sem intervenção manual.
+- [x] Cada parceiro é exibido por um tempo dentro da faixa 10–15s (implementado: 12s).
+- [x] O carrossel de parceiros roda em loop infinito sem intervenção manual.
 - [ ] O ciclo total (conteúdo útil + publicidade) fica entre 3 e 5 minutos.
 - [ ] A proporção entre conteúdo útil e publicidade se mantém em 60/40.
 - [ ] Imagens fora da especificação de tamanho/peso (seção 6) são identificadas antes de entrar em produção.
-- [ ] O painel roda de forma estável durante um dia inteiro de funcionamento (~12h) sem necessidade de reload manual.
+- [x] O painel roda de forma estável durante um dia inteiro de funcionamento (~12h) sem necessidade de reload manual.
