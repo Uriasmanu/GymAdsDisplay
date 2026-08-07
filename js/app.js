@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const relogioEl = document.getElementById('relogio');
 
   try {
-    const response = await fetch('/api/all');
+    const response = await fetch('/images.json');
     const data = await response.json();
     
     if (data.images && data.images.length > 0) {
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         img: img.path
       }));
 
-      console.log(`${parceiros.length} imagens detectadas (embaralhadas):`, parceiros.map(p => `${p.nome} [${p.categoria}]`));
+      console.log(`${parceiros.length} imagens detectadas:`, parceiros.map(p => `${p.nome} [${p.categoria}]`));
 
       const carrossel = new Carrossel(
         carrosselEl,
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       carrossel.inicializar();
     } else {
-      carrosselEl.innerHTML = '<div style="color: #c9a227; text-align: center; padding: 20px;">Nenhuma imagem encontrada nas pastas images/ ou parceiros/</div>';
+      carrosselEl.innerHTML = '<div style="color: #c9a227; text-align: center; padding: 20px;">Nenhuma imagem encontrada</div>';
     }
   } catch (error) {
     console.error('Erro ao carregar imagens:', error);

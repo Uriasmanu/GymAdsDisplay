@@ -23,6 +23,7 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 | 07/08/2026 | Implementada auto-detecção de imagens na pasta images/ | RF-01 a RF-06, CA-01 a CA-04 |
 | 07/08/2026 | Implementada alternância entre parceiros/ e images/ com aleatoriedade | RF-01 a RF-06, CA-01 a CA-04 |
 | 07/08/2026 | Implementada tela cheia automática | RF-04, CA-03, CA-04 |
+| 07/08/2026 | Corrigido deploy Vercel: migrado de serverless function para JSON estático | Todos |
 
 
 

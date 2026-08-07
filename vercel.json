@@ -1,10 +1,5 @@
 {
   "version": 2,
   "public": true,
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/serverless.js"
-    }
-  ]
+  "buildCommand": "node scripts/generate-manifest.js"
 }

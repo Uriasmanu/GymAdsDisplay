@@ -5,101 +5,94 @@ Sistema de carrossel automático para exibição de parceiros em monitores de 19
 ## Funcionalidades
 
 - Carrossel automático com transições suaves
-- **Auto-detecção de imagens** - adiciona/remove imagens automaticamente
+- **Auto-detecção de imagens** - pastas `images/` e `parceiros/`
+- Alternância aleatória entre imagens do CT e parceiros
+- Tela cheia automática
 - Barra de progresso visual
-- Design responsivo para diferentes tamanhos de tela
+- Design responsivo
 
 ## Como Usar
 
 ### 1. Adicionar/Remover Parceiros
 
-Basta adicionar ou remover imagens da pasta `images/`:
+Basta adicionar ou remover imagens nas pastas:
+
+- `images/` — informações do CT (academia)
+- `parceiros/` — propagandas de parceiros
+
+### 2. Atualizar o Manifest
+
+Após adicionar/remover imagens, regenere o `images.json`:
 
 ```bash
-# Adicionar nova imagem
-cp nova-imagem.jpg images/
-
-# Remover imagem
-rm images/imagem-antiga.jpg
+npm run build
 ```
 
-O carrossel atualiza automaticamente ao recarregar a página.
+Ou manualmente:
 
-### 2. Formatos Suportados
+```bash
+node scripts/generate-manifest.js
+```
+
+### 3. Formatos Suportados
 
 - JPG/JPEG
 - PNG
 - GIF
 - SVG
 
-### 3. Iniciar o Servidor
+### 4. Iniciar o Servidor
 
 ```bash
-# Instalar dependências (opcional, usa apenas módulos nativos)
-npm install
-
-# Iniciar servidor
 npm start
-
-# Ou diretamente
-node server.js
 ```
 
 Acesse: http://localhost:3000
 
-### 4. API de Imagens
+### 5. Deploy no Vercel
 
-Endpoint para listar imagens disponíveis:
+O projeto está configurado para deploy automático no Vercel:
 
-```
-GET http://localhost:3000/api/images
-```
-
-Resposta:
-```json
-{
-  "images": [
-    {
-      "filename": "boxe.jpeg",
-      "name": "boxe",
-      "path": "images/boxe.jpeg"
-    }
-  ]
-}
-```
+1. Conecte o repositório ao Vercel
+2. O `buildCommand` (`node scripts/generate-manifest.js`) roda automaticamente
+3. Os arquivos estáticos são servidos diretamente
 
 ## Estrutura do Projeto
 
 ```
 GymAdsDisplay/
-├── index.html          # Página principal
-├── server.js           # Servidor Node.js
+├── index.html              # Página principal
+├── images.json             # Manifest de imagens (gerado pelo build)
+├── server.js               # Servidor local (dev)
+├── vercel.json             # Configuração Vercel
 ├── css/
-│   ├── variables.css   # Variáveis de design
-│   └── styles.css      # Estilos
+│   ├── variables.css       # Tokens de design
+│   └── styles.css          # Estilos
 ├── js/
-│   ├── data.js         # Constantes
-│   ├── carousel.js     # Classe Carrossel
-│   └── app.js          # Inicialização
-├── images/             # Imagens dos parceiros
-├── implementado/       # Documentação de features
-└── docs/               # Documentação do projeto
+│   ├── data.js             # Constantes
+│   ├── carousel.js         # Classe Carrossel
+│   ├── fullscreen.js       # Tela cheia automática
+│   └── app.js              # Inicialização
+├── scripts/
+│   └── generate-manifest.js # Gera images.json
+├── images/                 # Imagens do CT
+├── parceiros/              # Imagens de parceiros
+├── implementado/           # Documentação de features
+└── docs/                   # Documentação do projeto
 ```
 
 ## Configurações
 
 ### Duração dos Slides
 
-Para alterar o tempo de exibição de cada slide:
-
 1. Edite `css/variables.css`:
    ```css
-   --duracao-slide: 12s; /* altere o valor */
+   --duracao-slide: 12s;
    ```
 
 2. Edite `js/data.js`:
    ```javascript
-   const DURACAO_SLIDE_MS = 12000; /* altere para o mesmo valor em ms */
+   const DURACAO_SLIDE_MS = 12000;
    ```
 
 ## Compatibilidade
