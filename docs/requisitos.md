@@ -69,7 +69,7 @@ O arquivo entregue cobre **apenas o bloco de publicidade dos parceiros** (os 40%
 
 ## 5. Requisitos não funcionais
 
-- RNF01 — **Resolução de referência:** 1600×900 px (16:9) para as imagens dos parceiros, compatível por escala com monitores 19" em 1280×1024, 1366×768 ou 1440×900.
+- RNF01 — **Resolução de referência:** 1280×1024 px (5:4) — resolução nativa do monitor LG 19" da recepção. Imagens devem ter no máximo essa dimensão.
 - RNF02 — **Peso de arquivo:** cada imagem de parceiro deve pesar no máximo ~500 KB, para evitar engasgo em loop contínuo de longa duração.
 - RNF03 — **Resolução de imagem (DPI):** 72–96 DPI é suficiente, por se tratar de exibição em tela, não impressão.
 - RNF04 — **Formato de arquivo:** PNG com fundo transparente para logos; JPG para banners/fotos com fundo já resolvido.
@@ -83,8 +83,9 @@ O arquivo entregue cobre **apenas o bloco de publicidade dos parceiros** (os 40%
 
 | Item | Especificação |
 |---|---|
-| Proporção | 16:9 |
-| Dimensão recomendada | 1600 × 900 px (ideal), até 1920 × 1080 px |
+| Proporção | 5:4 (monitor LG 19" antigo) |
+| Dimensão máxima | 1280 × 1024 px |
+| Dimensão mínima | 800 × 600 px |
 | DPI | 72–96 |
 | Formato | PNG (logo, fundo transparente) ou JPG (banner/foto) |
 | Peso máximo | ~500 KB |
