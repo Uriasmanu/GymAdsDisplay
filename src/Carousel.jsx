@@ -7,7 +7,9 @@ const imagensCT = import.meta.glob('/public/images/*.{jpg,jpeg,png}', { eager: t
 const imagensParceiros = import.meta.glob('/public/parceiros/*.{jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' })
 
 function extractPaths(modules) {
-  return Object.values(modules).sort()
+  return Object.values(modules)
+    .filter((p) => !p.includes('notification-icon'))
+    .sort()
 }
 
 function interleaveArrays(a, b) {
@@ -151,6 +153,7 @@ export default function Carousel() {
         {slide.tipo === 'intro' && (
           <div className="slide-intro">
             <img src="/images/android-icon-foreground.png" alt="" className="slide-intro__logo" />
+            <img src="/images/notification-icon.png" alt="" className="slide-intro__notif" />
           </div>
         )}
 
