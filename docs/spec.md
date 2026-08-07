@@ -15,6 +15,9 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 **Comportamento esperado:** o que deveria acontecer.
 **Escopo:** onde no código isso precisa ser resolvido (geração, exibição, ambos...).
 -->
+
+### [aberto] O codigo sempre tem que usar as imagens que estão dentro da pasta, se eu adicionar, adiciona se eu remover remove
+
 ## Histórico de Correções
 
 
