@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 
 const DURACAO_SLIDE_MS = 12000
 const DURACAO_TRANSICAO_MS = 1000
@@ -30,38 +30,93 @@ function buildSlides() {
   return [SLIDE_INTRO, ...middle, SLIDE_CONVITE]
 }
 
+function getBadgeLabel(tipo) {
+  switch (tipo) {
+    case 'ct': return 'CT Império'
+    case 'parceiro': return 'Parceiro'
+    case 'intro': return 'Bem-vindo'
+    case 'convite': return 'Anuncie'
+    default: return ''
+  }
+}
+
 export default function Carousel() {
-  const slides = useRef(buildSlides()).current
+  const slides = useMemo(buildSlides, [])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [brokenSrcs, setBrokenSrcs] = useState(() => new Set())
+
   const timerRef = useRef(null)
-  const progressRef = useRef(null)
+  const rafRef = useRef(null)
+  const isVisibleRef = useRef(true)
+
+  // Pula slides cuja imagem falhou ao carregar (ex: arquivo corrompido no build)
+  const resolveIndex = useCallback((index) => {
+    let idx = index
+    let attempts = 0
+    while (attempts < slides.length) {
+      const s = slides[idx]
+      if (s.tipo === 'intro' || s.tipo === 'convite' || !brokenSrcs.has(s.src)) {
+        return idx
+      }
+      idx = (idx + 1) % slides.length
+      attempts++
+    }
+    return index
+  }, [slides, brokenSrcs])
 
   const goToNext = useCallback(() => {
     setIsTransitioning(true)
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length)
+      setCurrentIndex((prev) => resolveIndex((prev + 1) % slides.length))
       setProgress(0)
       setIsTransitioning(false)
     }, DURACAO_TRANSICAO_MS)
-  }, [slides.length])
+  }, [slides.length, resolveIndex])
 
+  const handleImageError = useCallback((src) => {
+    setBrokenSrcs((prev) => {
+      const next = new Set(prev)
+      next.add(src)
+      return next
+    })
+  }, [])
+
+  // Timer do slide + barra de progresso via requestAnimationFrame
   useEffect(() => {
-    timerRef.current = setTimeout(goToNext, DURACAO_SLIDE_MS)
-
     const startTime = Date.now()
-    progressRef.current = setInterval(() => {
+
+    const tick = () => {
+      if (!isVisibleRef.current) {
+        rafRef.current = requestAnimationFrame(tick)
+        return
+      }
       const elapsed = Date.now() - startTime
       setProgress(Math.min((elapsed / DURACAO_SLIDE_MS) * 100, 100))
-    }, 50)
+      if (elapsed < DURACAO_SLIDE_MS) {
+        rafRef.current = requestAnimationFrame(tick)
+      }
+    }
+    rafRef.current = requestAnimationFrame(tick)
+    timerRef.current = setTimeout(goToNext, DURACAO_SLIDE_MS)
 
     return () => {
       clearTimeout(timerRef.current)
-      clearInterval(progressRef.current)
+      cancelAnimationFrame(rafRef.current)
     }
   }, [currentIndex, goToNext])
 
+  // Pausa a barra de progresso quando a aba fica oculta
+  useEffect(() => {
+    const onVisibilityChange = () => {
+      isVisibleRef.current = document.visibilityState === 'visible'
+    }
+    document.addEventListener('visibilitychange', onVisibilityChange)
+    return () => document.removeEventListener('visibilitychange', onVisibilityChange)
+  }, [])
+
+  // Fullscreen na primeira interação
   useEffect(() => {
     const requestFS = () => {
       const el = document.documentElement
@@ -69,16 +124,24 @@ export default function Carousel() {
         el.requestFullscreen().catch(() => {})
       }
     }
-
     if (document.fullscreenElement) return
     document.addEventListener('click', requestFS, { once: true })
     document.addEventListener('keydown', requestFS, { once: true })
-
     return () => {
       document.removeEventListener('click', requestFS)
       document.removeEventListener('keydown', requestFS)
     }
   }, [])
+
+  // Pré-carrega a próxima imagem para evitar flicker na troca
+  const nextIndex = resolveIndex((currentIndex + 1) % slides.length)
+  useEffect(() => {
+    const nextSlide = slides[nextIndex]
+    if (nextSlide && nextSlide.src) {
+      const img = new Image()
+      img.src = nextSlide.src
+    }
+  }, [nextIndex, slides])
 
   const slide = slides[currentIndex]
 
@@ -107,11 +170,13 @@ export default function Carousel() {
 
         {slide.tipo !== 'intro' && slide.tipo !== 'convite' && (
           <img
+            key={slide.src}
             src={slide.src}
             alt=""
-            className={`carousel__image ${
-              'carousel__image--active'
-            } ${isTransitioning ? 'carousel__image--fade-out' : ''}`}
+            onError={() => handleImageError(slide.src)}
+            className={`carousel__image carousel__image--active ${
+              isTransitioning ? 'carousel__image--fade-out' : ''
+            }`}
           />
         )}
       </div>
@@ -133,10 +198,7 @@ export default function Carousel() {
               {currentIndex + 1} / {slides.length}
             </span>
             <span className={`carousel__badge carousel__badge--${slide.tipo}`}>
-              {slide.tipo === 'ct' && 'CT Império'}
-              {slide.tipo === 'parceiro' && 'Parceiro'}
-              {slide.tipo === 'intro' && 'Bem-vindo'}
-              {slide.tipo === 'convite' && 'Anuncie'}
+              {getBadgeLabel(slide.tipo)}
             </span>
           </div>
         </div>
