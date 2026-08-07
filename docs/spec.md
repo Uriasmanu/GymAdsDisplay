@@ -16,6 +16,8 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 **Escopo:** onde no código isso precisa ser resolvido (geração, exibição, ambos...).
 --> 
 
+### [aberto] a logica de exibição de imagem não esta funcioinando no formato atual, troque para algo que funcione, com o codigo mostrando alternadamente uma imagem da pasta imagees e da pasta parceiros,não pode ter nada amarrado, tem que funcionar só com eu colocando/tirando a imagem da pasta e o carrossel se atualiza sem ser afetado
+
 ## Histórico de Correções
 
 | Data | Descrição | RF/CA Afetados |

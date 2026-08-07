@@ -2,19 +2,10 @@
   "name": "gym-ads-display",
   "version": "1.0.0",
   "description": "Display de parceiros para CT Império",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
-    "build": "node scripts/generate-manifest.js",
-    "prebuild": "node scripts/generate-manifest.js"
+    "start": "node dev/server.js",
+    "dev": "node dev/server.js",
+    "build": "node scripts/generate-manifest.js"
   },
-  "keywords": [
-    "display",
-    "carrossel",
-    "parceiros",
-    "ct-imperio"
-  ],
-  "author": "",
-  "license": "ISC"
+  "private": true
 }
