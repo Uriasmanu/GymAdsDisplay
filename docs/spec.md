@@ -16,6 +16,8 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 **Escopo:** onde no código isso precisa ser resolvido (geração, exibição, ambos...).
 -->
 
+### [aberto] refaça toda a aplicação. não precisa ser html e css, pode ser react, o importante é o carrossel funcionar e como é uma pagina só, o vercel não precisa ter muitas logicas de pagia
+
 ## Histórico de Correções
 
 | Data | Descrição | RF/CA Afetados |
