@@ -151,7 +151,6 @@ export default function Carousel() {
         {slide.tipo === 'intro' && (
           <div className="slide-intro">
             <img src="/images/android-icon-foreground.png" alt="" className="slide-intro__logo" />
-            <span className="slide-intro__nome">CT IMPÉRIO</span>
           </div>
         )}
 
