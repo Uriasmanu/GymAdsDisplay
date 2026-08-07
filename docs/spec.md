@@ -14,7 +14,7 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 **Comportamento atual:** o que está acontecendo de errado.
 **Comportamento esperado:** o que deveria acontecer.
 **Escopo:** onde no código isso precisa ser resolvido (geração, exibição, ambos...).
--->
+--> 
 
 ## Histórico de Correções
 
