@@ -3,36 +3,12 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 const DURACAO_SLIDE_MS = 12000
 const DURACAO_TRANSICAO_MS = 1000
 
-const IMAGENS_CT = [
-  '/images/banner.jpeg',
-  '/images/boxe.jpeg',
-  '/images/graduacaoJiu.jpeg',
-  '/images/graduacaoThai.jpeg',
-  '/images/jiu-baby.jpeg',
-  '/images/jiu-feminino.jpeg',
-  '/images/jiu-infantil.jpeg',
-  '/images/jiu-mirim.jpeg',
-  '/images/jiu-misto.jpeg',
-  '/images/Muay.jpeg',
-  '/images/muay-kids.jpeg',
-  '/images/no-gi.jpeg',
-  '/images/pascoakids.jpg',
-]
+const imagensCT = import.meta.glob('/public/images/*.{jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' })
+const imagensParceiros = import.meta.glob('/public/parceiros/*.{jpg,jpeg,png}', { eager: true, query: '?url', import: 'default' })
 
-const IMAGENS_PARCEIROS = [
-  '/parceiros/images.jpg',
-  '/parceiros/images.png',
-  '/parceiros/images (1).jpg',
-  '/parceiros/images (2).jpg',
-  '/parceiros/images (3).jpg',
-  '/parceiros/images (4).jpg',
-  '/parceiros/images (5).jpg',
-  '/parceiros/images (6).jpg',
-  '/parceiros/images (7).jpg',
-  '/parceiros/images (8).jpg',
-  '/parceiros/images (9).jpg',
-  '/parceiros/images (10).jpg',
-]
+function extractPaths(modules) {
+  return Object.values(modules).sort()
+}
 
 function interleaveArrays(a, b) {
   const result = []
@@ -48,7 +24,9 @@ const SLIDE_INTRO = { tipo: 'intro' }
 const SLIDE_CONVITE = { tipo: 'convite' }
 
 function buildSlides() {
-  const middle = interleaveArrays(IMAGENS_CT, IMAGENS_PARCEIROS)
+  const ctPaths = extractPaths(imagensCT)
+  const parceirosPaths = extractPaths(imagensParceiros)
+  const middle = interleaveArrays(ctPaths, parceirosPaths)
   return [SLIDE_INTRO, ...middle, SLIDE_CONVITE]
 }
 
