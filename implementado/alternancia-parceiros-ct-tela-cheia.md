@@ -10,12 +10,12 @@ Implementado
 
 ### Problemas Encontrados
 
-#### [aberto] Imagens na pasta parceiros e images devem alternar aleatoriamente
-**Comportamento atual:** Apenas imagens da pasta images/ são exibidas no carrossel.
-**Comportamento esperado:** O carrossel deve alternar entre imagens da pasta parceiros/ (propagandas) e images/ (informações do CT) de forma aleatória.
+#### [resolvido] Imagens na pasta parceiros e images devem alternar
+**Comportamento atual:** A imagens eram embaralhadas aleatoriamente sem padrão.
+**Comportamento esperado:** O carrossel deve alternar: 1 imagem de images/, 1 de parceiros/, 1 de images/, etc.
 **Escopo:** Frontend - carrossel de parceiros
 
-#### [aberto] HTML deve abrir em tela cheia automaticamente
+#### [resolvido] HTML deve abrir em tela cheia automaticamente
 **Comportamento atual:** O HTML abre em janela normal, requerendo F11 manual.
 **Comportamento esperado:** O HTML deve solicitar tela cheia automaticamente ao carregar.
 **Escopo:** Frontend - inicialização
@@ -244,3 +244,5 @@ Usar Fullscreen API para solicitar tela cheia no carregamento da página.
 | 07/08/2026 | Implementada auto-detecção de imagens na pasta images/ | RF-01 a RF-06, CA-01 a CA-04 |
 | 07/08/2026 | Implementada alternância entre parceiros/ e images/ com aleatoriedade | RF-01 a RF-06, CA-01 a CA-04 |
 | 07/08/2026 | Implementada tela cheia automática | RF-04, CA-03, CA-04 |
+| 07/08/2026 | Corrigido deploy Vercel: migrado de serverless function para JSON estático | Todos |
+| 07/08/2026 | Corrigida lógica de alternância: 1 imagem de images/, 1 de parceiros/, alternadamente | RF-01 a RF-06, CA-01 a CA-04 |

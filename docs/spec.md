@@ -14,9 +14,7 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 **Comportamento atual:** o que está acontecendo de errado.
 **Comportamento esperado:** o que deveria acontecer.
 **Escopo:** onde no código isso precisa ser resolvido (geração, exibição, ambos...).
---> 
-
-### [aberto] a logica de exibição de imagem não esta funcioinando no formato atual, troque para algo que funcione, com o codigo mostrando alternadamente uma imagem da pasta imagees e da pasta parceiros,não pode ter nada amarrado, tem que funcionar só com eu colocando/tirando a imagem da pasta e o carrossel se atualiza sem ser afetado
+-->
 
 ## Histórico de Correções
 
@@ -26,6 +24,7 @@ NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes
 | 07/08/2026 | Implementada alternância entre parceiros/ e images/ com aleatoriedade | RF-01 a RF-06, CA-01 a CA-04 |
 | 07/08/2026 | Implementada tela cheia automática | RF-04, CA-03, CA-04 |
 | 07/08/2026 | Corrigido deploy Vercel: migrado de serverless function para JSON estático | Todos |
+| 07/08/2026 | Corrigida lógica de alternância: 1 imagem de images/, 1 de parceiros/,alternadamente. Build automático no Vercel via buildCommand | RF-01 a RF-06, CA-01 a CA-04 |
 
 
 

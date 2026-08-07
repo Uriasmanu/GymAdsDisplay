@@ -20,14 +20,33 @@ function listImages(dir, source) {
     }));
 }
 
-const imagesFromDir = listImages(IMAGES_DIR, 'images');
-const parceirosFromDir = listImages(PARCEIROS_DIR, 'parceiros');
-const all = [...imagesFromDir, ...parceirosFromDir];
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
-for (let i = all.length - 1; i > 0; i--) {
-  const j = Math.floor(Math.random() * (i + 1));
-  [all[i], all[j]] = [all[j], all[i]];
+const images = shuffle(listImages(IMAGES_DIR, 'images'));
+const parceiros = shuffle(listImages(PARCEIROS_DIR, 'parceiros'));
+
+const all = [];
+let useImages = true;
+
+while (images.length > 0 || parceiros.length > 0) {
+  if (useImages && images.length > 0) {
+    all.push(images.shift());
+  } else if (!useImages && parceiros.length > 0) {
+    all.push(parceiros.shift());
+  } else if (images.length > 0) {
+    all.push(images.shift());
+  } else if (parceiros.length > 0) {
+    all.push(parceiros.shift());
+  }
+  useImages = !useImages;
 }
 
 fs.writeFileSync(OUTPUT, JSON.stringify({ images: all }, null, 2));
-console.log(`Gerado images.json com ${all.length} imagens (${imagesFromDir.length} images + ${parceirosFromDir.length} parceiros)`);
+console.log(`Gerado images.json com ${all.length} imagens (alternando images/ <-> parceiros/)`);
